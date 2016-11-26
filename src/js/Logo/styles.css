@@ -1,0 +1,17 @@
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo__icon {
+  width: 24px;
+  height: 24px;
+  background: url('../../img/icons/message.svg');
+}
+
+.logo__text {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+  color: rgba(0,0,0,0.87);
+}
