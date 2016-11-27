@@ -1,9 +1,9 @@
-import React from 'react'
-import './styles.css'
+import React from 'react';
+import './styles.css';
 
-export default () => (
-  <div className="logo">
+export default ({ theme = 'dark' }) => (
+  <div className={`logo logo--${theme}`}>
     <div className="logo__icon" />
     <span className="logo__text">SMessenger</span>
   </div>
-)
+);
