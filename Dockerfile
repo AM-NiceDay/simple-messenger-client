@@ -1,9 +1,4 @@
-FROM smebberson/alpine-nginx-nodejs
+from nginx:alpine
 
-ADD . /app
-WORKDIR /app
-
-RUN npm install
-RUN npm run build
-
+COPY build /var/www
 COPY nginx.conf /etc/nginx/nginx.conf

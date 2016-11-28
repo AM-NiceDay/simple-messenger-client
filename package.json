@@ -16,6 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "push-docker": "npm run build && docker build -t niceday/simple-messenger-client . && docker push niceday/simple-messenger-client"
   }
 }
