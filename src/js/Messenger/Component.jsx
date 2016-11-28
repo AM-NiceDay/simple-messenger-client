@@ -19,36 +19,75 @@ export default () => (
         </div>
         <div className="messenger__sidebar-user">
           <div className="messenger__sidebar-user-photo">
-            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/men/85.jpg" />
+            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/32.jpg" />
             <div className="messenger__sidebar-user-status" />
           </div>
           <div className="messenger__sidebar-user-info">
-            <span className="messenger__sidebar-user-info-name">Billie Riley</span>
-            <span className="messenger__sidebar-user-last-message">Hello, how is it going</span>
+            <span className="messenger__sidebar-user-info-name">Elaine Mendoza</span>
+            <span className="messenger__sidebar-user-last-message">I think, I will be busy today</span>
+          </div>
+          <span className="messenger__sidebar-user-last-message-date">1 hour ago</span>
+        </div>
+        <div className="messenger__sidebar-user">
+          <div className="messenger__sidebar-user-photo">
+            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/men/50.jpg" />
+            <div className="messenger__sidebar-user-status" />
+          </div>
+          <div className="messenger__sidebar-user-info">
+            <span className="messenger__sidebar-user-info-name">Douglas Mckinney</span>
+            <span className="messenger__sidebar-user-last-message">Sure, it's okey</span>
           </div>
           <span className="messenger__sidebar-user-last-message-date">Yesterday</span>
+        </div>
+        <div className="messenger__sidebar-user">
+          <div className="messenger__sidebar-user-photo">
+            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/42.jpg" />
+            <div className="messenger__sidebar-user-status" />
+          </div>
+          <div className="messenger__sidebar-user-info">
+            <span className="messenger__sidebar-user-info-name">Connie Evans</span>
+            <span className="messenger__sidebar-user-last-message">By the way, call me when...</span>
+          </div>
+          <span className="messenger__sidebar-user-last-message-date">27 November</span>
         </div>
       </div>
     </div>
     <div className="messenger__chat">
       <div className="messenger__chat-header">
         <div className="messenger__chat-info">
-          <img className="messenger__chat-photo" src="https://randomuser.me/api/portraits/men/85.jpg" />
-          <span className="messenger__chat-name">Lance Jaminez</span>
+          <img className="messenger__chat-photo" src="https://randomuser.me/api/portraits/men/50.jpg" />
+          <span className="messenger__chat-name">Douglas Mckinney</span>
           <span className="messenger__chat-status">Online</span>
         </div>
       </div>
       <div className="messenger__chat-messages">
         <div className="messenger__chat-message messenger__chat-message--out">
           <div className="messenger-chat-message-body">
-            <div className="messenger__chat-message-content messenger__chat-message-content--out">Some text</div>
-            <span className="messenger__chat-message-time">8:48 PM</span>
+            <div className="messenger__chat-message-content messenger__chat-message-content--out">Sure, it's okey</div>
+            <span className="messenger__chat-message-time">9:09 PM</span>
+          </div>
+        </div>
+        <div className="messenger__chat-message messenger__chat-message--out">
+          <div className="messenger-chat-message-body">
+            <div className="messenger__chat-message-content messenger__chat-message-content--out">Fine. I was thinking about your suggest. What do you think if I will take a book for a few weeks?</div>
+            <span className="messenger__chat-message-time">9:08 PM</span>
           </div>
         </div>
         <div className="messenger__chat-message messenger__chat-message--in">
           <div className="messenger-chat-message-body">
-            <div className="messenger__chat-message-content messenger__chat-message-content--in">Some text</div>
+            <div className="messenger__chat-message-content messenger__chat-message-content--in">Hey, going well. U?</div>
+            <span className="messenger__chat-message-time">8:52 PM</span>
+          </div>
+        </div>
+        <div className="messenger__chat-message messenger__chat-message--out">
+          <div className="messenger-chat-message-body">
+            <div className="messenger__chat-message-content messenger__chat-message-content--out">How is it going?</div>
             <span className="messenger__chat-message-time">8:48 PM</span>
+          </div>
+        </div>
+        <div className="messenger__chat-message messenger__chat-message--out">
+          <div className="messenger-chat-message-body">
+            <div className="messenger__chat-message-content messenger__chat-message-content--out">Hello</div>
           </div>
         </div>
       </div>
