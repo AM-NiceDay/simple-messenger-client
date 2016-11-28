@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import App from './js/App';
 import SignUpPage from './js/SignUpPage';
+import SignUpDetailsPage from './js/SignUpDetailsPage'
 import Messenger from './js/Messenger';
 
 injectTapEventPlugin();
@@ -22,6 +23,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={() => <div>Hello</div>} />
         <Route path="signup" component={SignUpPage} />
+        <Route path="signup/details" component={SignUpDetailsPage} />
         <Route path="messenger" component={Messenger} />
       </Route>
     </Router>
