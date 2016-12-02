@@ -1,10 +1,12 @@
-import React from 'react'
-import './styles.css'
-import Logo from '../Logo'
+import React from 'react';
+import './styles.css';
+import Logo from '../../Logo';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
-export default () => (
+const withVal = fn => e => fn(e.target.value);
+
+export default ({ email, password, onEmailChange, onPasswordChange, onSubmit }) => (
   <div className="sign-up-page">
     <div className="sign-up-page__top-background" />
     <div className="sign-up-page__card">
@@ -17,13 +19,24 @@ export default () => (
           Please create account or login into existing one.
         </p>
         <div className="sign-up-page__inputs">
-          <TextField className="sign-up-page__input" floatingLabelText="Email" />
-          <TextField className="sign-up-page__input" floatingLabelText="Password" />
+          <TextField
+            className="sign-up-page__input"
+            floatingLabelText="Email"
+            value={email}
+            onChange={withVal(onEmailChange)}
+          />
+          <TextField
+            className="sign-up-page__input"
+            floatingLabelText="Password"
+            type="password"
+            value={password}
+            onChange={withVal(onPasswordChange)}
+          />
         </div>
       </div>
       <div className="sign-up-page__buttons">
-        <FlatButton label="Next" />
+        <FlatButton label="Create" onClick={onSubmit} />
       </div>
     </div>
   </div>
-)
+);
