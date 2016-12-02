@@ -1,54 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signUp } from '../duck';
-import SignUpPageComponent from './Component';
+import Form from '../Form';
 
-class SignUpPage extends React.Component {
-  constructor(props) {
-    super(props);
+const SignUpPage = ({ handleSignUp }) => (
+  <Form
+    title="Sign up"
+    description="Please create account or login into existing one."
+    onSubmit={handleSignUp}
+  />
+);
 
-    this.state = {
-      email: '',
-      password: '',
-    };
-
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleEmailChange(email) {
-    this.setState({ email });
-  }
-
-  handlePasswordChange(password) {
-    this.setState({ password });
-  }
-
-  handleSubmit() {
-    const { email, password } = this.state;
-    const { handleSignUp } = this.props;
-
-    handleSignUp(email, password);
-  }
-
-  render() {
-    const { email, password } = this.state;
-
-    return (
-      <SignUpPageComponent
-        email={email}
-        password={password}
-        onEmailChange={this.handleEmailChange}
-        onPasswordChange={this.handlePasswordChange}
-        onSubmit={this.handleSubmit}
-      />
-    );
-  }
-}
-
-const mapDispatchToProps = {
-  handleSignUp: signUp,
-}
-
-export default connect(null, mapDispatchToProps)(SignUpPage);
+export default connect(null, { handleSignUp: signUp })(SignUpPage);

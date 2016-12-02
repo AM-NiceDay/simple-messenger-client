@@ -13,6 +13,7 @@ import saga from './js/saga';
 import App from './js/App';
 import Messenger from './js/Messenger';
 import SignUpPage from './js/auth/SignUpPage';
+import SignInPage from './js/auth/SignInPage';
 
 injectTapEventPlugin();
 
@@ -44,6 +45,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <IndexRoute component={Messenger} />
           <Route path="/signup" component={SignUpPage} />
+          <Route path="/signin" component={SignInPage} />
         </Route>
       </Router>
     </MuiThemeProvider>
