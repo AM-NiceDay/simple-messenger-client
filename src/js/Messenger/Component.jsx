@@ -9,7 +9,7 @@ export default () => (
         <Logo theme="light" />
       </div>
       <div className="messenger__sidebar-profile">
-        <img className="messenger__sidebar-profile-image" src="https://randomuser.me/api/portraits/men/85.jpg" />
+        <img className="messenger__sidebar-profile-image" src="https://randomuser.me/api/portraits/men/85.jpg" alt="user" />
         <span className="messenger__sidebar-profile-name">Mae Lucas</span>
         <span className="messenger__sidebar-profile-email">mae.lucas76@gmail.com</span>
       </div>
@@ -19,7 +19,7 @@ export default () => (
         </div>
         <div className="messenger__sidebar-user">
           <div className="messenger__sidebar-user-photo">
-            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/32.jpg" />
+            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/32.jpg" alt="user" />
             <div className="messenger__sidebar-user-status" />
           </div>
           <div className="messenger__sidebar-user-info">
@@ -30,7 +30,7 @@ export default () => (
         </div>
         <div className="messenger__sidebar-user">
           <div className="messenger__sidebar-user-photo">
-            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/men/50.jpg" />
+            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/men/50.jpg" alt="user" />
             <div className="messenger__sidebar-user-status" />
           </div>
           <div className="messenger__sidebar-user-info">
@@ -41,7 +41,7 @@ export default () => (
         </div>
         <div className="messenger__sidebar-user">
           <div className="messenger__sidebar-user-photo">
-            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/42.jpg" />
+            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/42.jpg" alt="user" />
             <div className="messenger__sidebar-user-status" />
           </div>
           <div className="messenger__sidebar-user-info">
@@ -55,14 +55,14 @@ export default () => (
     <div className="messenger__chat">
       <div className="messenger__chat-header">
         <div className="messenger__chat-info">
-          <img className="messenger__chat-photo" src="https://randomuser.me/api/portraits/men/50.jpg" />
+          <img className="messenger__chat-photo" src="https://randomuser.me/api/portraits/men/50.jpg" alt="user" />
           <span className="messenger__chat-name">Douglas Mckinney</span>
           <span className="messenger__chat-status">Online</span>
         </div>
       </div>
       <div className="messenger__chat-messages">
         <div className="messenger__chat-message">
-          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/50.jpg" alt="user-image" />
+          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/50.jpg" alt="user" />
           <div className="messenger__chat-message-content">
             <div className="messenger__chat-message-content-header">
               <span className="messenger__chat-message-name">Douglas Mckinney</span>
@@ -72,7 +72,7 @@ export default () => (
           </div>
         </div>
         <div className="messenger__chat-message">
-          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/85.jpg" alt="user-image" />
+          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/85.jpg" alt="user" />
           <div className="messenger__chat-message-content">
             <div className="messenger__chat-message-content-header">
               <span className="messenger__chat-message-name">Mae Lucas</span>
@@ -82,7 +82,7 @@ export default () => (
           </div>
         </div>
         <div className="messenger__chat-message">
-          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/50.jpg" alt="user-image" />
+          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/50.jpg" alt="user"/>
           <div className="messenger__chat-message-content">
             <div className="messenger__chat-message-content-header">
               <span className="messenger__chat-message-name">Douglas Mckinney</span>
@@ -97,7 +97,7 @@ export default () => (
           </div>
         </div>
         <div className="messenger__chat-message">
-          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/85.jpg" alt="user-image" />
+          <img className="messenger__chat-message-photo" src="https://randomuser.me/api/portraits/men/85.jpg" alt="user" />
           <div className="messenger__chat-message-content">
             <div className="messenger__chat-message-content-header">
               <span className="messenger__chat-message-name">Mae Lucas</span>
