@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import createLogger from 'redux-logger';
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import reducer from './js/reducer';
 import saga from './js/saga';
 import App from './js/App';
@@ -25,10 +26,20 @@ const muiTheme = getMuiTheme({
 
 const sagaMiddleware = createSagaMiddleware()
 
+const persistedState = JSON.parse(localStorage.getItem('redux-state'));
 const store = createStore(
   reducer,
-  applyMiddleware(createLogger(), sagaMiddleware)
+  persistedState,
+  applyMiddleware(
+    createLogger(),
+    sagaMiddleware,
+    routerMiddleware(browserHistory)
+  )
 );
+
+store.subscribe(() => {
+  localStorage.setItem('redux-state', JSON.stringify(store.getState()));
+})
 
 sagaMiddleware.run(saga);
 
@@ -38,10 +49,12 @@ sagaMiddleware.run(saga);
 //   }
 // };
 
+const history = syncHistoryWithStore(browserHistory, store);
+
 ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider muiTheme={muiTheme}>
-      <Router history={browserHistory}>
+      <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Messenger} />
           <Route path="/signup" component={SignUpPage} />

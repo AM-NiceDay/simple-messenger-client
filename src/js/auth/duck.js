@@ -1,5 +1,6 @@
 import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 
 const SIGN_UP = 'auth/SIGN_UP';
 const SIGN_UP_LOADING = 'auth/SIGN_UP_LOADING';
@@ -63,7 +64,8 @@ function* signInSaga({ payload }) {
     })
       .then(response => response.json());
 
-    yield put(signInSuccess());
+    yield put(signInSuccess(user));
+    yield put(push('/'));
   } catch (e) {
     yield put(signInError(e));
   }
@@ -71,11 +73,16 @@ function* signInSaga({ payload }) {
 
 export default (state = {}, action) => {
   switch (action.type) {
-    case SIGN_UP:
+    case SIGN_UP_SUCCESS:
       return {
-        email: action.payload.email,
-        password: action.payload.password,
+        ...state,
+        user: action.payload,
       };
+    case SIGN_IN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+      }
     default:
       return state;
   }
