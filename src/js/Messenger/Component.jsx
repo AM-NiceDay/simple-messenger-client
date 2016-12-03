@@ -2,54 +2,34 @@ import React from 'react';
 import Logo from '../Logo';
 import './styles.css';
 
-export default () => (
+export default ({ user, chats }) => (
   <div className="messenger">
     <div className="messenger__sidebar">
       <div className="messenger__sidebar-header">
         <Logo theme="light" />
       </div>
       <div className="messenger__sidebar-profile">
-        <img className="messenger__sidebar-profile-image" src="https://randomuser.me/api/portraits/men/85.jpg" alt="user" />
-        <span className="messenger__sidebar-profile-name">Mae Lucas</span>
-        <span className="messenger__sidebar-profile-email">mae.lucas76@gmail.com</span>
+        <img className="messenger__sidebar-profile-image" src="http://www.themeparkinsider.com/assets/PROF_NewUserIcon.png" alt="user" />
+        <span className="messenger__sidebar-profile-name">{user.email}</span>
+        <span className="messenger__sidebar-profile-email">{user.email}</span>
       </div>
       <div className="messenger__sidebar-users">
         <div className="messenger__sidebar-users-search">
           <input className="messenger__sidebar-users-search-input" type="text" placeholder="Search..."/>
         </div>
-        <div className="messenger__sidebar-user">
-          <div className="messenger__sidebar-user-photo">
-            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/32.jpg" alt="user" />
-            <div className="messenger__sidebar-user-status" />
+        {chats.map(chat => (
+          <div className="messenger__sidebar-user" key={chat._id}>
+            <div className="messenger__sidebar-user-photo">
+              <img className="messenger__sidebar-user-image" src="http://www.themeparkinsider.com/assets/PROF_NewUserIcon.png" alt="user" />
+              <div className="messenger__sidebar-user-status" />
+            </div>
+            <div className="messenger__sidebar-user-info">
+              <span className="messenger__sidebar-user-info-name">{chat.users.filter(peer => peer._id  !== user._id)[0].email}</span>
+              <span className="messenger__sidebar-user-last-message">{chat.lastMessage || 'No messages here yet...'}</span>
+            </div>
+            <span className="messenger__sidebar-user-last-message-date">-</span>
           </div>
-          <div className="messenger__sidebar-user-info">
-            <span className="messenger__sidebar-user-info-name">Elaine Mendoza</span>
-            <span className="messenger__sidebar-user-last-message">I think, I will be busy today</span>
-          </div>
-          <span className="messenger__sidebar-user-last-message-date">1 hour ago</span>
-        </div>
-        <div className="messenger__sidebar-user">
-          <div className="messenger__sidebar-user-photo">
-            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/men/50.jpg" alt="user" />
-            <div className="messenger__sidebar-user-status" />
-          </div>
-          <div className="messenger__sidebar-user-info">
-            <span className="messenger__sidebar-user-info-name">Douglas Mckinney</span>
-            <span className="messenger__sidebar-user-last-message">Sure, it's okey</span>
-          </div>
-          <span className="messenger__sidebar-user-last-message-date">Yesterday</span>
-        </div>
-        <div className="messenger__sidebar-user">
-          <div className="messenger__sidebar-user-photo">
-            <img className="messenger__sidebar-user-image" src="https://randomuser.me/api/portraits/women/42.jpg" alt="user" />
-            <div className="messenger__sidebar-user-status" />
-          </div>
-          <div className="messenger__sidebar-user-info">
-            <span className="messenger__sidebar-user-info-name">Connie Evans</span>
-            <span className="messenger__sidebar-user-last-message">By the way, call me when...</span>
-          </div>
-          <span className="messenger__sidebar-user-last-message-date">27 November</span>
-        </div>
+        ))}
       </div>
     </div>
     <div className="messenger__chat">

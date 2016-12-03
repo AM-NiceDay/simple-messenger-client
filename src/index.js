@@ -26,7 +26,7 @@ const muiTheme = getMuiTheme({
 
 const sagaMiddleware = createSagaMiddleware()
 
-const persistedState = JSON.parse(localStorage.getItem('redux-state'));
+const persistedState = JSON.parse(localStorage.getItem('redux-state')) || {};
 const store = createStore(
   reducer,
   persistedState,

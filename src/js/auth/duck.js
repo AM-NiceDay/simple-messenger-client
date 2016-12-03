@@ -43,6 +43,7 @@ function* signUpSaga({ payload }) {
       .then(response => response.json());
 
     yield put(signUpSuccess(user));
+    yield signInSaga({ payload });
   } catch (e) {
     yield put(signUpError(e));
   }
