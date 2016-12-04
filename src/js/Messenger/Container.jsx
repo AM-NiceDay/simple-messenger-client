@@ -9,8 +9,8 @@ class Messenger extends React.Component {
   }
 
   render() {
-    const { user, chats } = this.props;
-    return <Component user={user} chats={chats} />;
+    const { children, user, chats } = this.props;
+    return <Component user={user} chats={chats} children={children} />;
   }
 }
 

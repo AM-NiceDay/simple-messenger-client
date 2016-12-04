@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -12,9 +12,10 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux';
 import reducer from './js/reducer';
 import saga from './js/saga';
 import App from './js/App';
-import Messenger from './js/Messenger';
 import SignUpPage from './js/auth/SignUpPage';
 import SignInPage from './js/auth/SignInPage';
+import Messenger from './js/Messenger';
+import Chat from './js/Chat';
 
 injectTapEventPlugin();
 
@@ -56,9 +57,12 @@ ReactDOM.render(
     <MuiThemeProvider muiTheme={muiTheme}>
       <Router history={history}>
         <Route path="/" component={App}>
-          <IndexRoute component={Messenger} />
-          <Route path="/signup" component={SignUpPage} />
-          <Route path="/signin" component={SignInPage} />
+          <IndexRedirect to="messages" />
+          <Route path="signup" component={SignUpPage} />
+          <Route path="signin" component={SignInPage} />
+          <Route path="messages" component={Messenger}>
+            <Route path="@:chatId" component={Chat} />
+          </Route>
         </Route>
       </Router>
     </MuiThemeProvider>
