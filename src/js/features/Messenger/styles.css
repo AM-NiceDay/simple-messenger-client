@@ -64,6 +64,7 @@
 }
 
 .messenger__sidebar-user {
+  text-decoration: none;
   position: relative;
   height: 72px;
   width: 100%;

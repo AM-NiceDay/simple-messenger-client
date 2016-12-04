@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import Logo from '../Logo';
 import './styles.css';
 
@@ -18,7 +19,7 @@ export default ({ user, chats, children }) => (
           <input className="messenger__sidebar-users-search-input" type="text" placeholder="Search..."/>
         </div>
         {chats.map(chat => (
-          <div className="messenger__sidebar-user" key={chat._id}>
+          <Link to={`messages/@${chat._id}`} className="messenger__sidebar-user" key={chat._id}>
             <div className="messenger__sidebar-user-photo">
               <img className="messenger__sidebar-user-image" src="http://www.themeparkinsider.com/assets/PROF_NewUserIcon.png" alt="user" />
               <div className="messenger__sidebar-user-status" />
@@ -28,7 +29,7 @@ export default ({ user, chats, children }) => (
               <span className="messenger__sidebar-user-last-message">{chat.lastMessage || 'No messages here yet...'}</span>
             </div>
             <span className="messenger__sidebar-user-last-message-date">-</span>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

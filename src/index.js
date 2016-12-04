@@ -6,11 +6,14 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import api from './js/modules/api';
 import createStore from './js/createStore';
 import getRoutes from './js/getRoutes';
 
 const store = createStore();
 const history = syncHistoryWithStore(browserHistory, store);
+
+api.initialize(store);
 
 injectTapEventPlugin();
 const muiTheme = getMuiTheme({

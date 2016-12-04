@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import createLogger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 import { routerMiddleware } from 'react-router-redux';
 import { browserHistory } from 'react-router';
@@ -27,7 +26,6 @@ export default () => {
     getPersistedState(),
     composeEnhancers(
       applyMiddleware(
-        createLogger(),
         sagaMiddleware,
         routerMiddleware(browserHistory)
       )

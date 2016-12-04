@@ -1,5 +1,5 @@
-export const PUSH_ITEM = 'PUSH_ITEM';
-export const PUSH_ITEMS = 'PUSH_ITEMS';
+export const PUSH_ITEM = 'data/PUSH_ITEM';
+export const PUSH_ITEMS = 'data/PUSH_ITEMS';
 
 export const pushItem = (item, collection) => ({
   type: PUSH_ITEM,
