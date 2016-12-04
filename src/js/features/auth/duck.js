@@ -72,7 +72,7 @@ function* signInSaga({ payload }) {
   }
 }
 
-export default (state = {}, action) => {
+export default (state = { user: {} }, action) => {
   switch (action.type) {
     case SIGN_UP_SUCCESS:
       return {
