@@ -245,7 +245,7 @@
 .messenger__chat-form-submit-button {
   width: 40px;
   height: 40px;
-  background: url('./send.svg') no-repeat center center;
+  background: url('./img/send.svg') no-repeat center center;
   background-size: cover;
   border: none;
   cursor: pointer;

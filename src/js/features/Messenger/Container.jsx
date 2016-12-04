@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchChats } from './duck';
+import { fetchChats } from './actions';
+import { getChats } from './selectors';
 import Component from './Component';
 
 class Messenger extends React.Component {
@@ -16,7 +17,7 @@ class Messenger extends React.Component {
 
 const mapStateToProps = state => ({
   user: state.auth.user,
-  chats: state.messenger.chats,
+  chats: getChats(state),
 });
 
 const mapDispatchToProps = {

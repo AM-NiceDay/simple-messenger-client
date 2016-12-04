@@ -1,7 +1,7 @@
 import { FETCH_CHAT_MESSAGES_SUCCESS } from './actions';
 
 const initialState = {
-  messagesIds: [],
+  messageIds: [],
 };
 
 export default (state = initialState, action) => {
@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case FETCH_CHAT_MESSAGES_SUCCESS:
       return {
         ...state,
-        messagesIds: action.payload.map(message => message._id),
+        messageIds: action.payload.map(message => message._id),
       };
     default:
       return state;

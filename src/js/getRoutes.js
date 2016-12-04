@@ -17,10 +17,10 @@ const requireAuth = (store) => (nextState, replace) => {
 
 export default (store) => (
   <Route path="/" component={App}>
-    <IndexRedirect to="messages" />
+    <IndexRedirect to="messenger" />
     <Route path="signup" component={SignUpPage} />
     <Route path="signin" component={SignInPage} />
-    <Route path="messages" onEnter={requireAuth(store)} component={Messenger}>
+    <Route path="messenger" onEnter={requireAuth(store)} component={Messenger}>
       <Route path="@:chatId" component={Chat} />
     </Route>
   </Route>

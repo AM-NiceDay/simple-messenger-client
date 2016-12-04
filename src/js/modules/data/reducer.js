@@ -16,7 +16,7 @@ export default (state = {}, action) => {
         ...state,
         [action.meta.collection]: {
           ...state[action.meta.collection],
-          ...keyBy(action.payload, 'id'),
+          ...keyBy(action.payload, '_id'),
         },
       };
     default:

@@ -19,7 +19,7 @@ export default ({ user, chats, children }) => (
           <input className="messenger__sidebar-users-search-input" type="text" placeholder="Search..."/>
         </div>
         {chats.map(chat => (
-          <Link to={`messages/@${chat._id}`} className="messenger__sidebar-user" key={chat._id}>
+          <Link to={`messenger/@${chat._id}`} className="messenger__sidebar-user" key={chat._id}>
             <div className="messenger__sidebar-user-photo">
               <img className="messenger__sidebar-user-image" src="http://www.themeparkinsider.com/assets/PROF_NewUserIcon.png" alt="user" />
               <div className="messenger__sidebar-user-status" />

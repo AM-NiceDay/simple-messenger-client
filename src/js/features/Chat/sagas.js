@@ -8,7 +8,7 @@ function* fetchChatMessagesSaga({ payload }) {
   const chatId = payload;
   const messages = yield api.chat.getChatMessages(chatId);
 
-  yield put(pushItems(messages));
+  yield put(pushItems('messages', messages));
   yield put(fetchChatMessagesSuccess(messages));
 }
 
