@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchChatMessages } from './actions';
+import { getChatMessages, getPeer } from './selectors';
 import ChatComponent from './Component';
 
 class Chat extends React.Component {
@@ -10,13 +11,18 @@ class Chat extends React.Component {
   }
 
   render() {
+    const { messages, peer } = this.props;
+
     return (
-      <ChatComponent />
+      <ChatComponent messages={messages} peer={peer} />
     );
   }
 }
 
-const mapStateToProps = null;
+const mapStateToProps = (store, props) => ({
+  messages: getChatMessages(store),
+  peer: getPeer(store, props.params.chatId),
+});
 const mapDispatchToProps = { fetchChatMessages };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
