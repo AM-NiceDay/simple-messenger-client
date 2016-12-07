@@ -14,7 +14,7 @@ export const getChatMessages = state => {
 export const getPeer = (state, chatId) => {
   const currentUserId = selectors.getCurrentUserId(state);
   const chat = getItem(state, 'chats', chatId);
-  const peerId = chat.users.filter(id => id !== currentUserId)[0];
+  const peerId = chat.userIds.filter(id => id !== currentUserId)[0];
   const peer = getItem(state, 'users', peerId);
 
   return peer;
