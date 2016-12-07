@@ -1,7 +1,8 @@
 import React from 'react';
 import fecha from 'fecha';
+import ChatForm from './components/Form';
 
-export default ({ messages, peer }) => (
+export default ({ messages, peer, onMessagePost }) => (
   <div className="messenger__chat">
     <div className="messenger__chat-header">
       <div className="messenger__chat-info">
@@ -24,9 +25,6 @@ export default ({ messages, peer }) => (
         </div>
       ))}
     </div>
-    <div className="messenger__chat-form">
-      <input className="messenger__chat-form-text-input" type="text" placeholder="Write a message..."/>
-      <button className="messenger__chat-form-submit-button" />
-    </div>
+    <ChatForm onSubmit={onMessagePost} />
   </div>
 )

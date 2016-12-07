@@ -1,0 +1,25 @@
+.chat-form {
+  height: 72px;
+  background: rgba(0,0,0,0.06);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-form__text-input {
+  flex: 1;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: rgba(0,0,0,0.87);
+}
+
+.chat-form__submit-button {
+  width: 40px;
+  height: 40px;
+  background: url('./img/send.svg') no-repeat center center;
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+}
