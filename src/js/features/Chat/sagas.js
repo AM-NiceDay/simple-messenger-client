@@ -25,7 +25,6 @@ function* fetchChatMessagesSaga({ payload }) {
 function* postChatMessageSaga({ payload }) {
   const { chatId, text } = payload;
   const message = yield api.chat.postChatMessage({ chatId, text });
-  console.log(message);
 
   yield put(pushItem('messages', message));
   const chatMeta = yield select(state => getItem(state, 'chatMetas', chatId));
@@ -36,7 +35,6 @@ function* postChatMessageSaga({ payload }) {
       message._id,
     ],
   }))
-  console.log(chatMeta);
   yield put(postChatMessageSuccess(message));
 }
 
