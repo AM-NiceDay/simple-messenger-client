@@ -14,6 +14,7 @@ class ChatForm extends React.Component {
     e.preventDefault();
 
     this.props.onSubmit(this.refs.text.value);
+    this.refs.text.value = '';
   }
 
   render() {
