@@ -5,6 +5,7 @@ import SignUpPage from './features/auth/SignUpPage';
 import SignInPage from './features/auth/SignInPage';
 import Messenger from './features/Messenger';
 import Chat from './features/Chat';
+import CreateChat from './features/CreateChat';
 
 const requireAuth = (store) => (nextState, replace) => {
   if (!store.getState().auth.user.token) {
@@ -23,5 +24,6 @@ export default (store) => (
     <Route path="messenger" onEnter={requireAuth(store)} component={Messenger}>
       <Route path="@:chatId" component={Chat} />
     </Route>
+    <Route path="create-chat/:email" onEnter={requireAuth(store)} component={CreateChat} />
   </Route>
 )

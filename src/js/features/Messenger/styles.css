@@ -203,6 +203,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 24px;
+  height: 100%;
 }
 
 .messenger__chat-message {
