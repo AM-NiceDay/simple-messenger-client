@@ -36,7 +36,7 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = (store, props) => ({
-  messages: getChatMessages(store),
+  messages: getChatMessages(store, props.params.chatId),
   peer: getPeer(store, props.params.chatId),
 });
 const mapDispatchToProps = {

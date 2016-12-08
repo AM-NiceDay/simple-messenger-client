@@ -1,5 +1,6 @@
 .messenger {
   display: flex;
+  height: 100vh;
 }
 
 .messenger__sidebar {
@@ -175,16 +176,22 @@
   margin-right: 4px;
 }
 
-.messenger__chat-messages {
+.messenger__chat-messages-wrap {
   flex: 1;
+  overflow-y: scroll;
+}
+
+.messenger__chat-messages {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: flex-end;
   padding-bottom: 24px;
 }
 
 .messenger__chat-message {
   display: flex;
   position: relative;
+  flex-shrink: 0;
 }
 
 .messenger__chat-message:hover {

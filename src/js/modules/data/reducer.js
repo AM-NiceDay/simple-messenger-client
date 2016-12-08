@@ -18,7 +18,7 @@ export default (state = {}, action) => {
       ...state,
       [action.meta.collection]: {
         ...state[action.meta.collection],
-        [action.payload.id]: action.payload,
+        [action.payload._id]: action.payload,
       },
     };
   }

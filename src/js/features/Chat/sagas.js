@@ -1,7 +1,8 @@
 import { takeEvery } from 'redux-saga';
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
 import api from '../../modules/api';
 import { pushItem, pushItems } from '../../modules/data';
+import { getItem } from '../../modules/data';
 import {
   FETCH_CHAT_MESSAGES,
   fetchChatMessagesSuccess,
@@ -14,14 +15,28 @@ function* fetchChatMessagesSaga({ payload }) {
   const messages = yield api.chat.getChatMessages(chatId);
 
   yield put(pushItems('messages', messages));
+  yield put(pushItem('chatMetas', {
+    _id: chatId,
+    messageIds: messages.map(message => message._id),
+  }));
   yield put(fetchChatMessagesSuccess(messages));
 }
 
 function* postChatMessageSaga({ payload }) {
   const { chatId, text } = payload;
   const message = yield api.chat.postChatMessage({ chatId, text });
+  console.log(message);
 
   yield put(pushItem('messages', message));
+  const chatMeta = yield select(state => getItem(state, 'chatMetas', chatId));
+  yield put(pushItem('chatMetas', {
+    ...chatMeta,
+    messageIds: [
+      ...chatMeta.messageIds,
+      message._id,
+    ],
+  }))
+  console.log(chatMeta);
   yield put(postChatMessageSuccess(message));
 }
 
