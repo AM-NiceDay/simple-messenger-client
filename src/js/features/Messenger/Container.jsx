@@ -10,7 +10,7 @@ class Messenger extends React.Component {
   componentDidMount() {
     this.props.fetchChats();
 
-    const socket = createSocket('http://localhost:8080');
+    const socket = createSocket();
     socket.on('connect', () => {
       socket.emit('ws/listening', { userId: this.props.user._id });
       socket.on('ws/new-message', ({ chatId }) => this.props.fetchChatMessages(chatId));
