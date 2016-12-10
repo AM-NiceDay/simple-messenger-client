@@ -5,6 +5,7 @@ import SwipeableViews from 'react-swipeable-views';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Form from './containers/Form';
 import Logo from '../Logo';
+import { getSignUpErrors } from './selectors';
 import { signIn, signUp } from './actions';
 
 import './styles.css';
@@ -17,7 +18,7 @@ class Auth extends React.Component {
   handleChangeIndex = index => this.handleTypeChange(getType(index))
 
   render() {
-    const { params, handleSignIn, handleSignUp } = this.props;
+    const { signUpErrors, params, handleSignIn, handleSignUp } = this.props;
     const { type } = params;
 
     return (
@@ -34,12 +35,14 @@ class Auth extends React.Component {
           <SwipeableViews index={getIndex(type)} onChangeIndex={this.handleChangeIndex}>
             <Form
               description="Please sign into your account or create new one"
+              errors={{}}
               submitButtonText="Enter"
               onSubmit={handleSignIn}
             />
             <Form
               description="Please create new account or sign in into existing one"
               submitButtonText="Create"
+              errors={signUpErrors}
               onSubmit={handleSignUp}
             />
           </SwipeableViews>
@@ -49,10 +52,14 @@ class Auth extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  signUpErrors: getSignUpErrors(state),
+});
+
 const mapDispatchToProps = {
   handlePush: push,
   handleSignIn: signIn,
   handleSignUp: signUp,
 };
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

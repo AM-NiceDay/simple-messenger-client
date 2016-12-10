@@ -6,7 +6,7 @@ import './styles.css';
 
 const withVal = fn => e => fn(e.target.value);
 
-export default ({ title, description, submitButtonText, redirectButtonText, redirectButtonLink, email, password, onEmailChange, onPasswordChange, onSubmit }) => (
+export default ({ description, submitButtonText, errors, email, password, onEmailChange, onPasswordChange, onSubmit }) => (
   <div>
     <div className="auth-form__body">
       <p className="auth-form__description">{description}</p>
@@ -14,6 +14,7 @@ export default ({ title, description, submitButtonText, redirectButtonText, redi
         <TextField
           className="auth-form__input"
           floatingLabelText="Email"
+          errorText={errors.email ? errors.email.message : undefined}
           value={email}
           onChange={withVal(onEmailChange)}
         />

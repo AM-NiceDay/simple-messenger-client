@@ -32,20 +32,18 @@ class Form extends React.Component {
 
   render() {
     const { email, password } = this.state;
-    const { title, description, submitButtonText, redirectButtonText, redirectButtonLink } = this.props;
+    const { description, submitButtonText, errors } = this.props;
 
     return (
       <FormComponent
-        title={title}
         description={description}
         submitButtonText={submitButtonText}
-        redirectButtonText={redirectButtonText}
-        redirectButtonLink={redirectButtonLink}
         email={email}
         password={password}
+        errors={errors}
         onEmailChange={this.handleEmailChange}
         onPasswordChange={this.handlePasswordChange}
-        onSubmit={this.handleSubmit}
+        onSubmit={this.handleSubmit}ds
       />
     );
   }

@@ -1,10 +1,12 @@
 import {
   SIGN_IN_SUCCESS,
-  SIGN_UP_SUCCESS
+  SIGN_UP_SUCCESS,
+  SIGN_UP_ERROR,
 } from './actions';
 
 const initialState = {
   user: {},
+  signUpErrors: {},
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +20,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
+        signUpErrors: {},
+      };
+    case SIGN_UP_ERROR:
+      return {
+        ...state,
+        signUpErrors: action.payload,
       };
     default:
       return state;

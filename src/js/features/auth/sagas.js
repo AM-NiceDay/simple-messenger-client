@@ -32,8 +32,8 @@ function* signUpSaga({ payload }) {
     const user = yield api.auth.createUser({ email: payload.email, password: payload.password });
     yield put(signUpSuccess(user));
     yield signInSaga({ payload });
-  } catch (e) {
-    yield put(signUpError(e));
+  } catch (err) {
+    yield put(signUpError(err.errors));
   }
 }
 

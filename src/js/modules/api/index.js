@@ -1,5 +1,19 @@
 let api = {};
 
+const handleResponse = response =>
+  response.json()
+    .then(data => {
+      if (response.status >= 200 && response.status < 300) {
+        return data;
+      }
+
+      return Promise.reject(data);
+    });
+
+const fetchWithHandler = (url, options) =>
+  fetch(url, options)
+    .then(handleResponse);
+
 const authApi = {
   signIn: ({ email, password }) => fetch('/api/v1/auth', {
     method: 'POST',
@@ -9,14 +23,13 @@ const authApi = {
     },
   })
     .then(response => response.json()),
-  createUser: ({ email, password }) => fetch('/api/v1/users', {
+  createUser: ({ email, password }) => fetchWithHandler('/api/v1/users', {
     method: 'POST',
     body: JSON.stringify({ email, password }),
     headers: {
       'Content-Type': 'application/json',
     },
-  })
-    .then(response => response.json()),
+  }),
 }
 
 const messengerApi = {
