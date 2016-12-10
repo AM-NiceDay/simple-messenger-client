@@ -1,12 +1,14 @@
 import React from 'react';
-import './styles.css';
-import Logo from '../../Logo';
+import { Link } from 'react-router';
+import Logo from '../../../Logo';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 
+import './styles.css';
+
 const withVal = fn => e => fn(e.target.value);
 
-export default ({ title, description, email, password, onEmailChange, onPasswordChange, onSubmit }) => (
+export default ({ title, description, submitButtonText, redirectButtonText, redirectButtonLink, email, password, onEmailChange, onPasswordChange, onSubmit }) => (
   <div className="sign-up-page">
     <div className="sign-up-page__top-background" />
     <div className="sign-up-page__card">
@@ -33,7 +35,10 @@ export default ({ title, description, email, password, onEmailChange, onPassword
         </div>
       </div>
       <div className="sign-up-page__buttons">
-        <FlatButton label="Create" onClick={onSubmit} />
+        <Link to={redirectButtonLink}>
+          <FlatButton label={redirectButtonText} />
+        </Link>
+        <FlatButton label={submitButtonText} onClick={onSubmit} />
       </div>
     </div>
   </div>

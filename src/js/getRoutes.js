@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
 import App from './features/App';
-import SignUpPage from './features/auth/SignUpPage';
-import SignInPage from './features/auth/SignInPage';
+import { SignInPage, SignUpPage } from './features/Auth';
 import Messenger from './features/Messenger';
 import Chat from './features/Chat';
 import CreateChat from './features/CreateChat';

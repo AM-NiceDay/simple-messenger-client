@@ -1,5 +1,24 @@
 let api = {};
 
+const authApi = {
+  signIn: ({ email, password }) => fetch('/api/v1/auth', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json()),
+  createUser: ({ email, password }) => fetch('/api/v1/users', {
+    method: 'POST',
+    body: JSON.stringify({ email, password }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then(response => response.json()),
+}
+
 const messengerApi = {
   getChats: () => fetch('/api/v1/chats', {
     headers: {
@@ -40,6 +59,7 @@ const createChatApi = {
 }
 
 api = {
+  auth: authApi,
   messenger: messengerApi,
   chat: chatApi,
   createChat: createChatApi,
