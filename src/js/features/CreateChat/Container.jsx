@@ -1,27 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Component from './Component';
-import { fetchUsers } from './actions';
+import { fetchUsers, createChat } from './actions';
 import { getUsers } from './selectors';
 
 class CreateChat extends React.Component {
   componentDidMount() {
     this.props.handleFetchUsers();
   }
-  // componentDidMount() {
-  //   const { params } = this.props;
-  //
-  //   api.createChat.byEmail({
-  //     email: params.email,
-  //   })
-  //     .then(chat => alert(`Created. Chat id: ${chat._id}`))
-  //     .catch(err => alert(`Error: ${err.errors.email.message}`));
-  // }
 
   render() {
-    const {users} = this.props;
+    const { users, handleCreateChat } = this.props;
 
-    return <Component users={users} />;
+    return <Component users={users} onCreateChat={handleCreateChat} />;
   }
 }
 
@@ -30,6 +21,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {
   handleFetchUsers: fetchUsers,
+  handleCreateChat: createChat,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateChat);

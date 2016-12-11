@@ -3,7 +3,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import './styles.css';
 
-export default ({ users }) => (
+export default ({ users, onCreateChat }) => (
   <div className="create-chat">
     {users.map(user => (
       <div className="create-chat__user" key={user._id}>
@@ -12,7 +12,7 @@ export default ({ users }) => (
           <span className="create-chat__user-name">{user.fullName}</span>
           <span className="create-chat__user-email">{user.email}</span>
         </div>
-        <FlatButton className="create-chat__button" label={'Create chat'} onClick={() => {}} />
+        <FlatButton className="create-chat__button" label={'Create chat'} onClick={() => onCreateChat(user._id)} />
       </div>
     ))}
   </div>

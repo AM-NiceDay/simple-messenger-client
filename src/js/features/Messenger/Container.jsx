@@ -24,7 +24,7 @@ class Messenger extends React.Component {
     return (
       <Component
         user={user}
-        chats={reverse(sortBy(chats, chat => chat.lastMessage.created))}
+        chats={reverse(sortBy(chats, chat => chat.lastMessage ? chat.lastMessage.created : new Date().toString()))}
         children={children}
       />
     );
