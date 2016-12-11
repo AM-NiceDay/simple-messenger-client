@@ -30,7 +30,7 @@ const authApi = {
       'Content-Type': 'application/json',
     },
   }),
-}
+};
 
 const messengerApi = {
   getChats: () => fetch('/api/v1/chats', {
@@ -57,7 +57,7 @@ const chatApi = {
     },
   })
     .then(response => response.json()),
-}
+};
 
 const createChatApi = {
   byEmail: ({ email }) => fetchWithHandler('/api/v1/chatsByEmail', {
@@ -68,13 +68,18 @@ const createChatApi = {
       'Content-Type': 'application/json',
     },
   }),
-}
+};
+
+const usersApi = {
+  getUsers: () => fetchWithHandler('/api/v1/users'),
+};
 
 api = {
   auth: authApi,
   messenger: messengerApi,
   chat: chatApi,
   createChat: createChatApi,
+  users: usersApi,
 };
 
 api.initialize = store => api.store = store;

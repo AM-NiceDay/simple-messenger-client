@@ -21,7 +21,7 @@ export default (store) => (
     <Route path="auth(/:type)" component={Auth} />
     <Route path="messenger" onEnter={requireAuth(store)} component={Messenger}>
       <Route path="@:chatId" component={Chat} />
+      <Route path="new" component={CreateChat} />
     </Route>
-    <Route path="create-chat/:email" onEnter={requireAuth(store)} component={CreateChat} />
   </Route>
 )
