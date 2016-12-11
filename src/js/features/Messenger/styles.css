@@ -49,20 +49,34 @@
   background: #2D3C55;
 }
 
-.messenger__menu-chats-search {
+.messenger__menu-chats-actions {
   padding: 16px 8px;
   width: 100%;
+  opacity: .56;
+  display: flex;
 }
 
-.messenger__menu-chats-search-input {
-  width: 100%;
-  font-size: 14px;
-  padding: 8px;
-  color: rgba(255,255,255,0.56);
+.messenger__menu-chats-search {
+  width: calc(100% - 40px);
+  font-size: 15px;
+  padding: 6px;
+  color: rgba(255,255,255,1);
   letter-spacing: 0.5px;
-  border: 1px solid rgba(255,255,255,0.56);
+  border: 1px solid rgba(255,255,255,1);
   border-radius: 2px;
   background: none;
+}
+
+.messenger__menu-create-chat {
+  margin-left: 8px;
+  width: 32px;
+  height: 32px;
+  background: url('./img/create.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid rgba(255,255,255,1);
+  border-radius: 2px;
+  text-decoration: none;
 }
 
 .messenger__menu-chat {

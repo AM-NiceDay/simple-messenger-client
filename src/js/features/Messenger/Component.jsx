@@ -18,8 +18,9 @@ export default ({ user, chats, children }) => (
         <span className="messenger__profile-email">{user.email}</span>
       </div>
       <div className="messenger__menu-chats">
-        <div className="messenger__menu-chats-search">
-          <input className="messenger__menu-chats-search-input" type="text" placeholder="Search..."/>
+        <div className="messenger__menu-chats-actions">
+          <input className="messenger__menu-chats-search" type="text" placeholder="Search..."/>
+          <Link className="messenger__menu-create-chat" to="/messenger/new" />
         </div>
         {chats.map(chat => (
           <Link to={`/messenger/@${chat._id}`} className="messenger__menu-chat" key={chat._id}>
