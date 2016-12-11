@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import cn from 'classnames';
 import ChatMessages from './components/Messages';
 import ChatForm from './components/Form';
 
@@ -22,8 +23,17 @@ class Chat extends React.Component {
             <span className="messenger__chat-status">{peer.status === 'online' ? 'Online' : 'Offline'}</span>
           </div>
         </div>
-        <div className="messenger__chat-messages-wrap" ref="messages">
-          <ChatMessages messages={messages} />
+        <div
+          className={cn({
+            'messenger__chat-messages-wrap': true,
+            'messenger__chat-messages-wrap--no-messages': messages.length === 0,
+          })}
+          ref="messages"
+        >
+          {messages.length > 0 ?
+            <ChatMessages messages={messages} /> :
+            'No messages here yet'
+          }
         </div>
         <ChatForm onSubmit={onMessagePost} />
       </div>

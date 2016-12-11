@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import fecha from 'fecha';
+import cn from 'classnames';
 import Logo from '../Logo';
 import './styles.css';
 
@@ -27,16 +28,25 @@ export default ({ user, chats, children }) => (
             </div>
             <div className="messenger__sidebar-user-info">
               <span className="messenger__sidebar-user-info-name">{chat.users.filter(peer => peer._id  !== user._id)[0].fullName}</span>
-              <span className="messenger__sidebar-user-last-message">{chat.lastMessage ? chat.lastMessage.text : 'No messages here yet...'}</span>
+              <span className="messenger__sidebar-user-last-message">{chat.lastMessage ? chat.lastMessage.text : 'No messages here yet'}</span>
             </div>
-            <span className="messenger__sidebar-user-last-message-date">{chat.lastMessage ? fecha.format(new Date(chat.lastMessage.created), 'h:mm A') : '-'}</span>
+            {chat.lastMessage && (
+              <span className="messenger__sidebar-user-last-message-date">
+                {fecha.format(new Date(chat.lastMessage.created), 'h:mm A')}
+              </span>
+            )}
           </Link>
         ))}
       </div>
     </div>
 
-    <div className="messenger__chat">
-      {children}
+    <div
+      className={cn({
+        'messenger__chat': true,
+        'messenget__chat--not-selected': !children,
+      })}
+    >
+      {children || 'Select a chat to start messaging'}
     </div>
 
   </div>
