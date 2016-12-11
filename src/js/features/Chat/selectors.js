@@ -1,5 +1,5 @@
 import { getItem, getItems } from '../../modules/data';
-import { selectors } from '../auth';
+import { selectors } from '../Auth';
 
 export const getChatMessages = (state, chatId) => {
   const chatMeta = getItem(state, 'chatMetas', chatId);

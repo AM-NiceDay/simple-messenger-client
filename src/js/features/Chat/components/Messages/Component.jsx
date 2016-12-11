@@ -1,17 +1,19 @@
 import React from 'react';
-import fecha from 'fecha';
+import moment from 'moment';
+
+import './styles.css';
 
 export default ({ messages }) => (
-  <div className="messenger__chat-messages">
+  <div className="chat-messages">
     {messages.map(message => (
-      <div className="messenger__chat-message" key={message._id}>
-        <img className="messenger__chat-message-photo" src={message.user.photoUrl} alt="user" />
-        <div className="messenger__chat-message-content">
-          <div className="messenger__chat-message-content-header">
-            <span className="messenger__chat-message-name">{message.user.fullName}</span>
-            <span className="messenger__chat-message-time">{fecha.format(new Date(message.created), 'h:mm A')}</span>
+      <div className="chat-messages__message" key={message._id}>
+        <img className="chat-messages__message-photo" src={message.user.photoUrl} alt="user" />
+        <div className="chat-messages__message-content">
+          <div className="chat-messages__message-content-header">
+            <span className="chat-messages__message-name">{message.user.fullName}</span>
+            <span className="chat-messages__message-time">{moment(message.created).format('h:mm A')}</span>
           </div>
-          <span className="messenger__char-message-content-body">{message.text}</span>
+          <span className="chat-messages__message-content-body">{message.text}</span>
         </div>
       </div>
     ))}

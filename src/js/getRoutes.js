@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, IndexRedirect } from 'react-router';
 import App from './features/App';
-import SignUpPage from './features/auth/SignUpPage';
-import SignInPage from './features/auth/SignInPage';
+import Auth from './features/Auth';
 import Messenger from './features/Messenger';
 import Chat from './features/Chat';
 import CreateChat from './features/CreateChat';
@@ -10,7 +9,7 @@ import CreateChat from './features/CreateChat';
 const requireAuth = (store) => (nextState, replace) => {
   if (!store.getState().auth.user.token) {
     replace({
-      pathname: '/signin',
+      pathname: '/auth',
       state: { nextPathname: nextState.location.pathname }
     });
   }
@@ -19,11 +18,10 @@ const requireAuth = (store) => (nextState, replace) => {
 export default (store) => (
   <Route path="/" component={App}>
     <IndexRedirect to="messenger" />
-    <Route path="signup" component={SignUpPage} />
-    <Route path="signin" component={SignInPage} />
+    <Route path="auth(/:type)" component={Auth} />
     <Route path="messenger" onEnter={requireAuth(store)} component={Messenger}>
       <Route path="@:chatId" component={Chat} />
+      <Route path="new" component={CreateChat} />
     </Route>
-    <Route path="create-chat/:email" onEnter={requireAuth(store)} component={CreateChat} />
   </Route>
 )
