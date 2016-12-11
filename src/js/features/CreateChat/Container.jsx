@@ -8,7 +8,8 @@ class CreateChat extends React.Component {
     api.createChat.byEmail({
       email: params.email,
     })
-      .then(chat => alert(`Created. Chat id: ${chat._id}`));
+      .then(chat => alert(`Created. Chat id: ${chat._id}`))
+      .catch(err => alert(`Error: ${err.errors.email.message}`));
   }
 
   render() {

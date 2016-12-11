@@ -60,15 +60,14 @@ const chatApi = {
 }
 
 const createChatApi = {
-  byEmail: ({ email }) => fetch('/api/v1/chatsByEmail', {
+  byEmail: ({ email }) => fetchWithHandler('/api/v1/chatsByEmail', {
     method: 'POST',
     body: JSON.stringify({ email }),
     headers: {
       Authorization: `Bearer ${api.store.getState().auth.user.token}`,
       'Content-Type': 'application/json',
     },
-  })
-    .then(response => response.json()),
+  }),
 }
 
 api = {
