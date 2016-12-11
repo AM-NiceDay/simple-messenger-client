@@ -81,6 +81,7 @@
   position: relative;
   width: 56px;
   height: 56px;
+  flex-shrink: 0;
 }
 
 .messenger__sidebar-user-image {
@@ -114,6 +115,10 @@
 .messenger__sidebar-user-last-message {
   font-size: 14px;
   color: rgba(255,255,255,0.56);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 200px;
 }
 
 .messenger__sidebar-user-last-message-date {
@@ -216,7 +221,7 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 24px;
-  height: 100%;
+  min-height: 100%;
 }
 
 .messenger__chat-message {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
-import fecha from 'fecha';
 import cn from 'classnames';
 import Logo from '../Logo';
+import TimeAgo from 'react-timeago';
 import './styles.css';
 
 export default ({ user, chats, children }) => (
@@ -32,7 +32,7 @@ export default ({ user, chats, children }) => (
             </div>
             {chat.lastMessage && (
               <span className="messenger__sidebar-user-last-message-date">
-                {fecha.format(new Date(chat.lastMessage.created), 'h:mm A')}
+                <TimeAgo date={chat.lastMessage.created} minPeriod={30} />
               </span>
             )}
           </Link>
