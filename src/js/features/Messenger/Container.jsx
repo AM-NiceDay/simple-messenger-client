@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import createSocket from 'socket.io-client';
+import sortBy from 'lodash/sortBy';
+import reverse from 'lodash/reverse';
 import { fetchChats } from './actions';
 import { actions as chatActions } from '../Chat';
 import { getChats } from './selectors';
@@ -19,7 +21,13 @@ class Messenger extends React.Component {
 
   render() {
     const { children, user, chats } = this.props;
-    return <Component user={user} chats={chats} children={children} />;
+    return (
+      <Component
+        user={user}
+        chats={reverse(sortBy(chats, chat => chat.lastMessage.created))}
+        children={children}
+      />
+    );
   }
 }
 
