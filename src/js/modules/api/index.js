@@ -79,7 +79,11 @@ const createChatApi = {
 };
 
 const usersApi = {
-  getUsers: () => fetchWithHandler('/api/v1/users'),
+  getUsers: () => fetchWithHandler('/api/v1/users/search', {
+    headers: {
+      Authorization: `Bearer ${api.store.getState().auth.user.token}`,
+    },
+  }),
 };
 
 api = {
