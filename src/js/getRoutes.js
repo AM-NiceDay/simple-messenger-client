@@ -15,10 +15,13 @@ const requireAuth = (store) => (nextState, replace) => {
   }
 };
 
+const cleanUpStore = store => () =>
+  store.dispatch({ type: 'simple-messenger/reset' });
+
 export default (store) => (
   <Route path="/" component={App}>
     <IndexRedirect to="messenger" />
-    <Route path="auth(/:type)" component={Auth} />
+    <Route path="auth(/:type)" onEnter={cleanUpStore(store)} component={Auth} />
     <Route path="messenger" onEnter={requireAuth(store)} component={Messenger}>
       <Route path="@:chatId" component={Chat} />
       <Route path="new" component={CreateChat} />

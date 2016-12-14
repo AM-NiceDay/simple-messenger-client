@@ -6,12 +6,12 @@ import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
 const getPersistedState = () => {
-  if (!localStorage.getItem('redux-state')) {
+  if (!localStorage.getItem('redux-state-v1.2')) {
     return {};
   }
 
   try {
-    return JSON.parse(localStorage.getItem('redux-state'));
+    return JSON.parse(localStorage.getItem('redux-state-v1.2'));
   } catch(e) {
     return {};
   }
