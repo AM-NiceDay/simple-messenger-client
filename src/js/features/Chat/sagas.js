@@ -12,8 +12,10 @@ import {
 
 function* fetchChatMessagesSaga({ payload }) {
   const chatId = payload;
-  const messages = yield api.chat.getChatMessages(chatId);
+  const { messages, chats, users } = yield api.chat.getChatMessages(chatId);
 
+  yield put(pushItems('chats', chats));
+  yield put(pushItems('users', users));
   yield put(pushItems('messages', messages));
   yield put(pushItem('chatMetas', {
     _id: chatId,

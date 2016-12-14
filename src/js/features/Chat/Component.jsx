@@ -19,11 +19,13 @@ class Chat extends React.Component {
     return (
       <div className="chat">
         <div className="chat__header">
-          <div className="chat__info">
-            <img className="chat__photo" src={peer.photoUrl} alt="user" />
-            <span className="chat__name">{peer.fullName}</span>
-            <span className="chat__status">{peer.status === 'online' ? 'Online' : 'Offline'}</span>
-          </div>
+          {peer && (
+            <div className="chat__info">
+              <img className="chat__photo" src={peer.photoUrl} alt="user" />
+              <span className="chat__name">{peer.fullName}</span>
+              <span className="chat__status">{peer.status === 'online' ? 'Online' : 'Offline'}</span>
+            </div>
+          )}
         </div>
         <div
           className={cn({

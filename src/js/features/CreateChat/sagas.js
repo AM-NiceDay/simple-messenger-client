@@ -13,9 +13,9 @@ function* fetchUsersSaga() {
 }
 
 function* createChatSaga({ payload }) {
-  yield api.createChat.byId({ peerId: payload });
+  const chat = yield api.createChat.byId({ peerId: payload });
   yield put(messengerActions.fetchChats());
-  yield put(push(`/messenger`));
+  yield put(push(`/messenger/@${chat._id}`));
 }
 
 export default function* () {
