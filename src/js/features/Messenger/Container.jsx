@@ -10,7 +10,7 @@ import Component from './Component';
 
 class Messenger extends React.Component {
   componentDidMount() {
-    this.props.fetchChats();
+    // this.props.fetchChats();
 
     const socket = createSocket();
     socket.on('connect', () => {

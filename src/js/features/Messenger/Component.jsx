@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import cn from 'classnames';
 import Logo from '../Logo';
-import TimeAgo from 'react-timeago';
+import { ChatListContainer } from '../ChatList';
 
 import './styles.css';
 
@@ -18,27 +18,7 @@ export default ({ user, chats, children }) => (
         <span className="messenger__profile-email">{user.email}</span>
       </div>
       <div className="messenger__menu-chats">
-        <div className="messenger__menu-chats-actions">
-          <input className="messenger__menu-chats-search" type="text" placeholder="Search..."/>
-          <Link className="messenger__menu-create-chat" to="/messenger/new" />
-        </div>
-        {chats.map(chat => (
-          <Link to={`/messenger/@${chat._id}`} className="messenger__menu-chat" key={chat._id}>
-            <div className="messenger__menu-chat-peer-photo">
-              <img className="messenger__menu-chat-peer-image" src={chat.users.filter(peer => peer._id  !== user._id)[0].photoUrl} alt="user" />
-              <div className="messenger__menu-chat-peer-status" />
-            </div>
-            <div className="messenger__menu-chat-info">
-              <span className="messenger__menu-chat-peer-name">{chat.users.filter(peer => peer._id  !== user._id)[0].fullName}</span>
-              <span className="messenger__menu-chat-last-message">{chat.lastMessage ? chat.lastMessage.text : 'No messages here yet'}</span>
-            </div>
-            {chat.lastMessage && (
-              <span className="messenger__menu-chat-last-message-date">
-                <TimeAgo date={chat.lastMessage.created} minPeriod={30} />
-              </span>
-            )}
-          </Link>
-        ))}
+        <ChatListContainer />
       </div>
     </div>
 

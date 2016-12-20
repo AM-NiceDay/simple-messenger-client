@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga';
-import { put } from 'redux-saga/effects';
+import { put, select } from 'redux-saga/effects';
 import api from '../../modules/api';
-import { pushItem, pushItems } from '../../modules/data';
+import { getItem, pushItem, pushItems } from '../../modules/data';
 import { FETCH_CHATS, fetchChatsSuccess } from './actions';
 
 function* fetchChatsSaga () {
