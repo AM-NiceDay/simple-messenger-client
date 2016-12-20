@@ -1,4 +1,4 @@
-import { loadChats, loadChatMessages, loadMessages, loadUsers } from './actions';
+import { loadChats, loadChatMessages, loadChatsMessages, loadMessages, loadUsers } from './actions';
 import reducer from './reducer';
 import { getChats, getChatMessages, getMessages, getUser, getUsers } from './selectors';
 
@@ -7,6 +7,7 @@ export {
   loadChats,
   getChatMessages,
   loadChatMessages,
+  loadChatsMessages,
   getUser,
   getUsers,
   loadUsers,

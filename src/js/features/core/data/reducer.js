@@ -1,6 +1,6 @@
 import keyBy from 'lodash/keyBy';
 import uniq from 'lodash/fp/uniq';
-import { LOAD_CHATS, LOAD_CHAT_MESSAGES, LOAD_MESSAGES, LOAD_USERS } from './actions';
+import { LOAD_CHATS, LOAD_CHAT_MESSAGES, LOAD_CHATS_MESSAGES, LOAD_MESSAGES, LOAD_USERS } from './actions';
 
 const initialState = {
   chats: {},
@@ -8,6 +8,11 @@ const initialState = {
   messages: {},
   users: {},
 };
+
+const updateChatMessages = (chatMessages, messageIds) => uniq([
+  ...(chatMessages || []),
+  ...(messageIds || []),
+]);
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -24,10 +29,24 @@ export default (state = initialState, action) => {
         ...state,
         chatsMessages: {
           ...state.chatsMessages,
-          [action.payload.chatId]: uniq([
-            ...(state.chatsMessages[action.payload.chatId] || []),
-            ...(action.payload.messageIds || []),
-          ]),
+          [action.payload.chatId]: updateChatMessages(
+            state.chatsMessages[action.payload.chatId],
+            action.payload.messageIds,
+          ),
+        },
+      };
+    case LOAD_CHATS_MESSAGES:
+      return {
+        ...state,
+        chatsMessages: {
+          ...state.chatsMessages,
+          ...action.payload.reduce((acc, value) => ({
+            ...acc,
+            [value.chatId]: updateChatMessages(
+              state.chatsMessages[value.chatId],
+              value.messageIds,
+            ),
+          }), {}),
         },
       };
     case LOAD_MESSAGES:

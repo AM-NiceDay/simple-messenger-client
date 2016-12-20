@@ -10,6 +10,12 @@ export const loadChatMessages = ({ chatId, messageIds }) => ({
   payload: ({ chatId, messageIds }),
 });
 
+export const LOAD_CHATS_MESSAGES = 'data/LOAD_CHATS_MESSAGES';
+export const loadChatsMessages = (chatsMessages) => ({
+  type: LOAD_CHATS_MESSAGES,
+  payload: chatsMessages,
+});
+
 export const LOAD_MESSAGES = 'data/LOAD_MESSAGES';
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,

@@ -1,4 +1,4 @@
-import { loadChatMessages } from './actions';
+import { loadChatMessages, loadChatsMessages } from './actions';
 import reducer from './reducer';
 
 describe('core/data reducer', () => {
@@ -43,6 +43,30 @@ describe('core/data reducer', () => {
       expect(nextState).toEqual({
         chatsMessages: {
           '123': [],
+        },
+      });
+    });
+  });
+
+  describe('LOAD_CHATS_MESSAGES handler', () => {
+    it('workds like LOAD_CHAT_MESSAGES for each item', () => {
+      const state = {
+        chatsMessages: {
+          c2: ['m3', 'm4']
+        },
+      };
+      const action = loadChatsMessages([
+        { chatId: 'c1', messageIds: ['m1', 'm2']},
+        { chatId: 'c2', messageIds: ['m4', 'm5']},
+        { chatId: 'c3', messageIds: undefined },
+      ]);
+      const nextState = reducer(state, action);
+
+      expect(nextState).toEqual({
+        chatsMessages: {
+          c1: ['m1', 'm2'],
+          c2: ['m3', 'm4', 'm5'],
+          c3: [],
         },
       });
     });
