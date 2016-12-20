@@ -18,6 +18,7 @@ function* signInSaga({ payload }) {
 
   try {
     const user = yield api.auth.signIn({ email: payload.email, password: payload.password });
+    localStorage.setItem('jwt-token', user.token);
     yield put(signInSuccess(user));
     yield put(push('/'));
   } catch (e) {
