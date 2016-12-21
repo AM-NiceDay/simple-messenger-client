@@ -5,4 +5,5 @@ import saga from './sagas';
 export {
   ChatListContainer,
   reducer,
+  saga,
 };

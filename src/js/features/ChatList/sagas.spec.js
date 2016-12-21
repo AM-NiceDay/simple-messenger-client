@@ -1,7 +1,7 @@
 import { put, call } from 'redux-saga/effects';
 import api from '../core/api';
 import { fetchChatsSaga } from './sagas';
-import { FETCH_CHATS } from './actions';
+import { FETCH_CHATS, fetchChatsLoading, fetchChatsSuccess } from './actions';
 import { loadChats, loadMessages, loadChatsMessages, loadUsers } from '../core/data';
 
 describe('ChatList sagas', () => {
@@ -24,12 +24,9 @@ describe('ChatList sagas', () => {
         ],
       };
 
-      expect(gen.next().value).toEqual(put({
-        type: FETCH_CHATS,
-        meta: {
-          lifecycle: 'loading',
-        },
-      }));
+      expect(gen.next().value).toEqual(
+        put(fetchChatsLoading())
+      );
       expect(gen.next().value).toEqual(
         call(api.chats.getChats)
       );
@@ -59,16 +56,10 @@ describe('ChatList sagas', () => {
         ]))
       );
       expect(gen.next().value).toEqual(
-        put({
-          type: FETCH_CHATS,
-          payload: [
+        put(fetchChatsSuccess([
             { _id: 'c1', userIds: ['u1', 'u2'], lastMessageId: 'm1' },
             { _id: 'c2', userIds: ['u1', 'u3'], lastMessageId: 'm2' },
-          ],
-          meta: {
-            lifecycle: 'success',
-          },
-        })
+        ]))
       );
       expect(gen.next().done).toEqual(true);
     });
