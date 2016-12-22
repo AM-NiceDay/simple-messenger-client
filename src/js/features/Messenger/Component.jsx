@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import cn from 'classnames';
 import Logo from '../Logo';
 import { ChatListContainer } from '../ChatList';

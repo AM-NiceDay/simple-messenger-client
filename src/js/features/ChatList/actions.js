@@ -1,6 +1,3 @@
-import api from '../core/api';
-import { loadChats, loadMessages, loadUsers } from '../core/data';
-
 export const FETCH_CHATS = 'chat-list/FETCH_CHATS';
 export const FETCH_CHATS_LOADING = 'chat-list/FETCH_CHATS_LOADING';
 export const FETCH_CHATS_SUCCESS = 'chat-list/FETCH_CHATS_SUCCESS';
