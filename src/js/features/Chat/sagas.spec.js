@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { loadChats, loadChatMessages, loadMessages, loadUsers } from '../core/data';
 import api from '../core/api';
-import { fetchChatMessagesSaga, loadData } from './sagas';
+import { loadData, fetchChatMessagesSaga, postChatMessageSaga } from './sagas';
 import { fetchChatMessagesSuccess } from './actions';
 
 describe('Chat sagas', () => {
@@ -55,10 +55,26 @@ describe('Chat sagas', () => {
           users: [{ _id: 'u1' }, { _id: 'u2' }],
         })
       );
-      expect(gen.next().value).toEqual(
-        put(fetchChatMessagesSuccess([{ _id: 'm1' }, { _id: 'm2' }, { _id: 'm3' }]))
-      );
       expect(gen.next().done).toEqual(true);
+    });
+  });
+
+  describe('#postChatMessageSaga', () => {
+    it('posts chat message', () => {
+      const gen = postChatMessageSaga({ payload: { chatId: 'c1', text: 'Message text' } });
+
+      expect(gen.next().value).toEqual(
+        call(api.messages.postChatMessage, { chatId: 'c1', text: 'Message text' }),
+      );
+      expect(gen.next({ _id: 'm1' }).value).toEqual(
+        put(loadMessages([{ _id: 'm1' }]))
+      );
+      expect(gen.next().value).toEqual(
+        put(loadChatMessages({
+          chatId: 'c1',
+          messageIds: ['m1'],
+        }))
+      );
     });
   });
 });

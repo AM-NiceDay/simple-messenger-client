@@ -4,9 +4,7 @@ import api from '../core/api';
 import { loadChats, loadChatMessages, loadMessages, loadUsers } from '../core/data';
 import {
   FETCH_CHAT_MESSAGES,
-  fetchChatMessagesSuccess,
-  // POST_CHAT_MESSAGE,
-  // postChatMessageSuccess,
+  POST_CHAT_MESSAGE,
 } from './actions';
 
 export function* loadData({ chatId, chats, messages, users }) {
@@ -22,26 +20,22 @@ export function* loadData({ chatId, chats, messages, users }) {
 export function* fetchChatMessagesSaga({ payload: chatId }) {
   const { chats, messages, users } = yield call(api.messages.getChatMessages, chatId);
   yield call(loadData, { chatId, chats, messages, users });
-  yield put(fetchChatMessagesSuccess(messages));
 }
 
-// function* postChatMessageSaga({ payload }) {
-//   const { chatId, text } = payload;
-//   const message = yield api.chat.postChatMessage({ chatId, text });
-//
-//   yield put(pushItem('messages', message));
-//   const chatMeta = yield select(state => getItem(state, 'chatMetas', chatId));
-//   yield put(pushItem('chatMetas', {
-//     ...chatMeta,
-//     messageIds: [
-//       ...chatMeta.messageIds,
-//       message._id,
-//     ],
-//   }))
-//   yield put(postChatMessageSuccess(message));
-// }
+
+export function* postChatMessageSaga({ payload: { chatId, text } }) {
+  const message = yield call(api.messages.postChatMessage, { chatId, text });
+
+  if (message) {
+    yield put(loadMessages([message]))
+    yield put(loadChatMessages({
+      chatId,
+      messageIds: [message._id],
+    }));
+  }
+}
 
 export default function* chatSaga() {
   yield takeEvery(FETCH_CHAT_MESSAGES, fetchChatMessagesSaga);
-  // yield takeEvery(POST_CHAT_MESSAGE, postChatMessageSaga);
+  yield takeEvery(POST_CHAT_MESSAGE, postChatMessageSaga);
 }
