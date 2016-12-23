@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchChatMessages, postChatMessage } from './actions';
-import { getChatMessages, getPeer } from './selectors';
+import { getPopulatedChat, getPopulatedChatMessages } from '../core/data';
 import ChatComponent from './Component';
 
 class Chat extends React.Component {
@@ -16,6 +16,14 @@ class Chat extends React.Component {
     fetchMessages(params.chatId);
   }
 
+  componentDidUpdate(prevProps) {
+    const { fetchMessages, params } = this.props;
+
+    if (prevProps.params.chatId !== params.chatId) {
+      fetchMessages(params.chatId);
+    }
+  }
+
   handleMessagePost(text) {
     const { postMessage, params } = this.props;
 
@@ -23,12 +31,12 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { messages, peer } = this.props;
+    const { chat, messages } = this.props;
 
     return (
       <ChatComponent
         messages={messages}
-        peer={peer}
+        peer={chat.peer}
         onMessagePost={this.handleMessagePost}
       />
     );
@@ -36,8 +44,8 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = (store, props) => ({
-  messages: getChatMessages(store, props.params.chatId),
-  peer: getPeer(store, props.params.chatId),
+  chat: getPopulatedChat(store, props.params.chatId),
+  messages: getPopulatedChatMessages(store, props.params.chatId),
 });
 const mapDispatchToProps = {
   fetchMessages: fetchChatMessages,

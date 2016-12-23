@@ -1,5 +1,6 @@
 import { selectors as authSelectors } from '../../Auth';
 import chats from './chats';
+import messages from './messages';
 
 const handleResponse = response =>
   response.json()
@@ -18,4 +19,5 @@ export const apiFetch = (url, options) =>
 
 export default {
   chats: chats(apiFetch),
+  messages: messages(apiFetch),
 };
