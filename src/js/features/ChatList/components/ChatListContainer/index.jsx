@@ -14,7 +14,7 @@ class ChatListContainer extends React.Component {
   }
 
   render() {
-    const chats = this.props.chats;
+    const { chats } = this.props;
 
     return (
       <div>

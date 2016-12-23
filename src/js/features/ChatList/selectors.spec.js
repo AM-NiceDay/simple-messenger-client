@@ -35,9 +35,9 @@ describe('ChatList selectors', () => {
 
       expect(chats).toEqual(
         [
-          { _id: 'c1', peerId: 'u1', peer: { _id: 'u1' }, lastMessage: { _id: 'm2', created: '2016-12-11T18:18:53.172Z' } },
-          { _id: 'c2', peerId: 'u2', peer: { _id: 'u2' }, lastMessage: { _id: 'm3', created: '2016-12-11T18:18:56.172Z' } },
           { _id: 'c3', peerId: 'u3', peer: { _id: 'u3' } },
+          { _id: 'c2', peerId: 'u2', peer: { _id: 'u2' }, lastMessage: { _id: 'm3', created: '2016-12-11T18:18:56.172Z' } },
+          { _id: 'c1', peerId: 'u1', peer: { _id: 'u1' }, lastMessage: { _id: 'm2', created: '2016-12-11T18:18:53.172Z' } },
         ]
       );
     });
