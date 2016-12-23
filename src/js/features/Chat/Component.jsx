@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import cn from 'classnames';
+import throttle from 'lodash/fp/throttle';
 import ChatMessages from './components/Messages';
 import ChatForm from './components/Form';
 
@@ -14,7 +15,7 @@ class Chat extends React.Component {
   }
 
   render () {
-    const { messages, newMessages, peer, onMessagePost } = this.props;
+    const { messages, newMessages, peer, onMessagePost, onReadNew } = this.props;
 
     return (
       <div className="chat">
@@ -39,7 +40,7 @@ class Chat extends React.Component {
               <div className="chat__messages">
                 <ChatMessages messages={messages} />
                 {newMessages.length > 0 &&
-                  <div>
+                  <div onMouseOver={throttle(2000, onReadNew)}>
                     <div className="chat__divider">
                       <span className="chat__divider-text">New messages</span>
                     </div>

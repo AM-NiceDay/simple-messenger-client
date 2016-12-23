@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects';
 import { loadChats, loadChatMessages, loadMessages, loadUsers } from '../core/data';
 import api from '../core/api';
-import { loadData, fetchChatMessagesSaga, postChatMessageSaga } from './sagas';
+import { loadData, fetchChatMessagesSaga, postChatMessageSaga, updateChatLastReadSaga } from './sagas';
 import { fetchChatMessagesSuccess } from './actions';
 
 describe('Chat sagas', () => {
@@ -77,4 +77,19 @@ describe('Chat sagas', () => {
       );
     });
   });
+
+  describe('#updateChatLastReadSaga', () => {
+    it('updates chat lastRead', () => {
+      const date = new Date();
+      const gen = updateChatLastReadSaga({ payload: { chatId: 'c1', lastReadDate: date } });
+
+      expect(gen.next().value).toEqual(
+        call(api.chats.updateChatLastRead, { chatId: 'c1', lastRead: date.toISOString() })
+      );
+      expect(gen.next({ _id: 'c1' }).value).toEqual(
+        put(loadChats([{ _id: 'c1' }]))
+      );
+      expect(gen.next().done).toEqual(true);
+    });
+  })
 });

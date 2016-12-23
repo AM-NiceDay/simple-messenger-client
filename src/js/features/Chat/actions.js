@@ -7,3 +7,6 @@ export const POST_CHAT_MESSAGE = 'chat/POST_CHAT_MESSAGE';
 export const POST_CHAT_MESSAGE_SUCCESS = 'chat/POST_CHAT_MESSAGE_SUCCESS';
 export const postChatMessage = ({ chatId, text }) => ({ type: POST_CHAT_MESSAGE, payload: { chatId, text } });
 export const postChatMessageSuccess = (message) => ({ type: POST_CHAT_MESSAGE_SUCCESS, payload: message });
+
+export const UPDATE_CHAT_LAST_READ = 'chat/UPDATE_CHAT_LAST_READ';
+export const updateChatLastRead = ({ chatId, lastReadDate }) => ({ type: UPDATE_CHAT_LAST_READ, payload: { chatId, lastReadDate }});

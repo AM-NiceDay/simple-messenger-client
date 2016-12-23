@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import filter from 'lodash/fp/filter';
 import { getPopulatedChat, getPopulatedChatMessages } from '../core/data';
 import { selectors as authSelectors } from '../Auth';
-import { fetchChatMessages, postChatMessage } from './actions';
+import { fetchChatMessages, postChatMessage, updateChatLastRead } from './actions';
 import ChatComponent from './Component';
 
 class Chat extends React.Component {
@@ -11,6 +11,7 @@ class Chat extends React.Component {
     super(props);
 
     this.handleMessagePost = this.handleMessagePost.bind(this);
+    this.handleReadNew = this.handleReadNew.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +29,12 @@ class Chat extends React.Component {
 
   handleMessagePost(text) {
     const { postMessage, params } = this.props;
-
     return postMessage({ chatId: params.chatId, text });
+  }
+
+  handleReadNew() {
+    const { updateLastRead, params } = this.props;
+    updateLastRead({ chatId: params.chatId, lastReadDate: new Date() });
   }
 
   render() {
@@ -44,6 +49,7 @@ class Chat extends React.Component {
         newMessages={newMessages}
         peer={peer}
         onMessagePost={this.handleMessagePost}
+        onReadNew={this.handleReadNew}
       />
     );
   }
@@ -57,6 +63,7 @@ const mapStateToProps = (state, props) => ({
 const mapDispatchToProps = {
   fetchMessages: fetchChatMessages,
   postMessage: postChatMessage,
+  updateLastRead: updateChatLastRead,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Chat);
