@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchChatMessages, postChatMessage } from './actions';
+import filter from 'lodash/fp/filter';
 import { getPopulatedChat, getPopulatedChatMessages } from '../core/data';
+import { selectors as authSelectors } from '../Auth';
+import { fetchChatMessages, postChatMessage } from './actions';
 import ChatComponent from './Component';
 
 class Chat extends React.Component {
@@ -31,21 +33,26 @@ class Chat extends React.Component {
   }
 
   render() {
-    const { chat, messages } = this.props;
+    const { user, chat: { peer, lastRead }, messages } = this.props;
+    const userLastRead = lastRead ? lastRead[user._id] : null;
+    const newMessages = filter(message => message.created > userLastRead, messages);
+    const readMessages = filter(message => message.created <= userLastRead, messages);
 
     return (
       <ChatComponent
-        messages={messages}
-        peer={chat.peer}
+        messages={readMessages}
+        newMessages={newMessages}
+        peer={peer}
         onMessagePost={this.handleMessagePost}
       />
     );
   }
 }
 
-const mapStateToProps = (store, props) => ({
-  chat: getPopulatedChat(store, props.params.chatId),
-  messages: getPopulatedChatMessages(store, props.params.chatId),
+const mapStateToProps = (state, props) => ({
+  user: authSelectors.getLoggedInUser(state),
+  chat: getPopulatedChat(state, props.params.chatId),
+  messages: getPopulatedChatMessages(state, props.params.chatId),
 });
 const mapDispatchToProps = {
   fetchMessages: fetchChatMessages,

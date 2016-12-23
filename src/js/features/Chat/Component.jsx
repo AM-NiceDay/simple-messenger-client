@@ -14,7 +14,7 @@ class Chat extends React.Component {
   }
 
   render () {
-    const { messages, peer, onMessagePost } = this.props;
+    const { messages, newMessages, peer, onMessagePost } = this.props;
 
     return (
       <div className="chat">
@@ -34,8 +34,20 @@ class Chat extends React.Component {
           })}
           ref="messages"
         >
-          {messages.length > 0 ?
-            <ChatMessages messages={messages} /> :
+          {messages.length > 0 || newMessages.length > 0 ?
+            (
+              <div className="chat__messages">
+                <ChatMessages messages={messages} />
+                {newMessages.length > 0 &&
+                  <div>
+                    <div className="chat__divider">
+                      <span className="chat__divider-text">New messages</span>
+                    </div>
+                    <ChatMessages messages={newMessages} />
+                  </div>
+                }
+              </div>
+            ) :
             'No messages here yet'
           }
         </div>

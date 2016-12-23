@@ -79,3 +79,30 @@
     background-clip: content-box;
     background-color: rgba(0,0,0,.06);
 }
+
+.chat__messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 24px;
+  min-height: 100%;
+  width: 100%;
+}
+
+.chat__divider {
+  display: flex;
+  align-items: center;
+}
+
+.chat__divider-text {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: rgba(0,0,0,.56);
+}
+
+.chat__divider:before, .chat__divider:after {
+  content: '';
+  display: block;
+  border-bottom: 1px solid rgba(0,0,0,.24);
+  flex: 1;
+}
